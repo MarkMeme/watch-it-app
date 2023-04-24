@@ -1,0 +1,43 @@
+import 'package:dartz/dartz.dart';
+import 'package:watch_it_app/core/error/exceptions.dart';
+import 'package:watch_it_app/movies/data/data_source/movie_remote_data_source.dart';
+import 'package:watch_it_app/movies/domain/entities/movie.dart';
+import 'package:watch_it_app/movies/domain/repository/base_movie_repo.dart';
+
+import '../../../core/error/failure.dart';
+
+class MovieRepo extends BaseMovieRepo {
+  final BaseMovieRemoteDataSource baseMovieRemoteDataSource;
+
+  MovieRepo(this.baseMovieRemoteDataSource);
+
+  @override
+  Future<Either<Failure, List<Movie>>> getNowPlaying() async {
+    final result = await baseMovieRemoteDataSource.getNowPlaying();
+    try {
+      return right(result);
+    } on ServerError catch (failure) {
+      return left(ServerFailure(failure.errorMessageModel.statusMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Movie>>> getPopularMovies() async {
+    final result = await baseMovieRemoteDataSource.getPopularMovies();
+    try {
+      return right(result);
+    } on ServerError catch (failure) {
+      return left(ServerFailure(failure.errorMessageModel.statusMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Movie>>> getTopRatedMovies() async {
+    final result = await baseMovieRemoteDataSource.getTopRatedMovies();
+    try {
+      return right(result);
+    } on ServerError catch (failure) {
+      return left(ServerFailure(failure.errorMessageModel.statusMessage));
+    }
+  }
+}
