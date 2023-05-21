@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:watch_it_app/movies/presentation/screens/movie_home_screen.dart';
+import 'package:watch_it_app/movies/presentation/screens/movies_screen.dart';
+
+import 'core/services/services_locator.dart';
 
 void main() {
+  ServicesLocator().init();
   runApp(const MyApp());
 }
 
@@ -12,8 +15,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: MoviesHomeScreen.routeName,
-      routes: {MoviesHomeScreen.routeName: (context) => MoviesHomeScreen()},
+      debugShowCheckedModeBanner: false,
+      initialRoute: MainMoviesScreen.routeName,
+      routes: {
+        MainMoviesScreen.routeName: (context) => const MainMoviesScreen()
+      },
     );
   }
 }
