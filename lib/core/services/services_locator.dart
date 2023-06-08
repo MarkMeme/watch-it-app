@@ -3,6 +3,8 @@ import 'package:watch_it_app/movies/data/data_source/movie_remote_data_source.da
 import 'package:watch_it_app/movies/data/repository/movie_repo.dart';
 import 'package:watch_it_app/movies/domain/repository/base_movie_repo.dart';
 import 'package:watch_it_app/movies/domain/use_cases/get_now_playing_use_case.dart';
+import 'package:watch_it_app/movies/domain/use_cases/get_popular_movies_use_case.dart';
+import 'package:watch_it_app/movies/domain/use_cases/get_top_rated_movies_use_case.dart';
 import 'package:watch_it_app/movies/presentation/cotroller/movies_bloc.dart';
 
 final getIt = GetIt.instance;
@@ -16,7 +18,7 @@ final getIt = GetIt.instance;
 class ServicesLocator {
   void init() {
     /// BLOC
-    getIt.registerFactory(() => MoviesBloc(getNowPlayingUseCse: getIt()));
+    getIt.registerFactory(() => MoviesBloc(getIt(), getIt(), getIt()));
 
     /// DATA SOURCE
     getIt.registerLazySingleton<BaseMovieRemoteDataSource>(
@@ -28,5 +30,9 @@ class ServicesLocator {
     /// USE CASE
     getIt.registerLazySingleton(
         () => GetNowPlayingUseCse(baseMovieRepo: getIt()));
+    getIt.registerLazySingleton(
+        () => GetPopularMoviesUseCse(baseMovieRepo: getIt()));
+    getIt.registerLazySingleton(
+        () => GetTopRatedMoviesUseCse(baseMovieRepo: getIt()));
   }
 }
