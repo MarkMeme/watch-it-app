@@ -5,16 +5,16 @@ class Movie extends Equatable {
   final String title;
   final String backdropPath;
   final List<int> genreIds;
-  final String overView;
+  final String overview;
   final double voteAverage;
-  final double releaseDate;
+  final String releaseDate;
 
   const Movie(
       {required this.id,
       required this.title,
       required this.backdropPath,
       required this.genreIds,
-      required this.overView,
+      required this.overview,
       required this.voteAverage,
       required this.releaseDate});
 
@@ -22,5 +22,5 @@ class Movie extends Equatable {
   // TODO: implement props
   // for same hashcode == in the same place
   List<Object?> get props =>
-      [id, title, backdropPath, genreIds, overView, voteAverage, releaseDate];
+      [id, title, backdropPath, genreIds, overview, voteAverage, releaseDate];
 }
