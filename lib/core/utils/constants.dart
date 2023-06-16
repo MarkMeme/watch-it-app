@@ -6,4 +6,7 @@ class AppConstants {
   static const String nowPlayingEndPoint = "/movie/now_playing";
   static const String topRatedEndPoint = "/movie/top_rated";
   static const String popularEndPoint = "/movie/popular";
+
+  static String moviesDetailsPath(int movieID) =>
+      '$baseUrl/movie/$movieID?api_key=$apiKey';
 }
