@@ -16,8 +16,7 @@ class MoviesBloc extends Bloc<MoviesEvents, MoviesStates> {
       this.getTopRatedMoviesUseCse)
       : super(const MoviesStates()) {
     on<GetNowPlayingMovieEvent>((event, emit) async {
-      final result =
-          await GetNowPlayingUseCse(baseMovieRepo: getIt()).execute();
+      final result = await GetNowPlayingUseCse(baseMovieRepo: getIt()).call();
       emit(state.copyWith(nowPlayingState: RequestState.loaded));
       result.fold(
         (l) => emit(state.copyWith(
@@ -30,7 +29,7 @@ class MoviesBloc extends Bloc<MoviesEvents, MoviesStates> {
     });
     on<GetPopularMoviesEvent>((event, emit) async {
       final result =
-          await GetPopularMoviesUseCse(baseMovieRepo: getIt()).execute();
+          await GetPopularMoviesUseCse(baseMovieRepo: getIt()).call();
       emit(state.copyWith(popularState: RequestState.loaded));
       result.fold(
         (l) => emit(state.copyWith(
@@ -41,7 +40,7 @@ class MoviesBloc extends Bloc<MoviesEvents, MoviesStates> {
     });
     on<GetTopRatedMovieEvent>((event, emit) async {
       final result =
-          await GetTopRatedMoviesUseCse(baseMovieRepo: getIt()).execute();
+          await GetTopRatedMoviesUseCse(baseMovieRepo: getIt()).call();
       emit(state.copyWith(topRatedState: RequestState.loaded));
       result.fold(
         (l) => emit(state.copyWith(

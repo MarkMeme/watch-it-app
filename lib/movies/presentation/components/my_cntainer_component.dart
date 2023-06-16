@@ -3,8 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MyContainerComponent extends StatelessWidget {
   String title = '';
+  Function callBackFunction;
 
-  MyContainerComponent({required this.title});
+  MyContainerComponent({required this.title, required this.callBackFunction});
 
   @override
   Widget build(BuildContext context) {
@@ -28,17 +29,22 @@ class MyContainerComponent extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              /// TODO : NAVIGATION TO Top Rated Movies Screen
+              callBackFunction();
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                children: const [
+                children: [
                   Text(
-                    'See More',
-                    style: TextStyle(color: Colors.white),
+                    'See More ',
+                    style: GoogleFonts.poppins(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 0.15,
+                        color: Colors.white),
                   ),
-                  Icon(Icons.arrow_forward_ios, size: 16.0, color: Colors.white)
+                  const Icon(Icons.arrow_forward_ios,
+                      size: 16.0, color: Colors.white)
                 ],
               ),
             ),
