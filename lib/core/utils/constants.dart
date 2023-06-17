@@ -9,4 +9,7 @@ class AppConstants {
 
   static String moviesDetailsPath(int movieID) =>
       '$baseUrl/movie/$movieID?api_key=$apiKey';
+
+  static String recommendationPath(int movieID) =>
+      '$baseUrl/movie/$movieID/recommendation?api_key=$apiKey';
 }
