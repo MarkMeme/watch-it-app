@@ -5,15 +5,22 @@ import 'package:watch_it_app/movies/presentation/components/popular_component.da
 import 'package:watch_it_app/movies/presentation/components/top_rated_component.dart';
 import 'package:watch_it_app/movies/presentation/cotroller/movies_bloc.dart';
 import 'package:watch_it_app/movies/presentation/cotroller/movies_events.dart';
+import 'package:watch_it_app/movies/presentation/screens/popular_movies_screen.dart';
+import 'package:watch_it_app/movies/presentation/screens/top_rated_screen.dart';
 
 import '../components/my_cntainer_component.dart';
 import '../components/now_playing_component.dart';
 
-class MainMoviesScreen extends StatelessWidget {
+class MainMoviesScreen extends StatefulWidget {
   static const String routeName = 'MainMovieScreen';
 
   const MainMoviesScreen({Key? key}) : super(key: key);
 
+  @override
+  State<MainMoviesScreen> createState() => _MainMoviesScreenState();
+}
+
+class _MainMoviesScreenState extends State<MainMoviesScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -29,15 +36,26 @@ class MainMoviesScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const NowPlayingComponent(),
-              MyContainerComponent(title: 'Popular'),
+              MyContainerComponent(
+                  title: 'Popular', callBackFunction: popularCallbackFunction),
               const PopularComponent(),
-              MyContainerComponent(title: 'Top Rated'),
+              MyContainerComponent(
+                  title: 'Top Rated',
+                  callBackFunction: topRatedCallbackFunction),
               const TopRatedComponent(),
-              const SizedBox(height: 50.0),
+              const SizedBox(height: 20),
             ],
           ),
         ),
       ),
     );
+  }
+
+  topRatedCallbackFunction() {
+    Navigator.pushNamed(context, TopRatedScreen.routeName);
+  }
+
+  popularCallbackFunction() {
+    Navigator.pushNamed(context, PopularMoviesScreen.routeName);
   }
 }

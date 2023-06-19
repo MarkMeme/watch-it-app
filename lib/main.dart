@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:watch_it_app/movies/presentation/screens/movies_screen.dart';
+import 'package:watch_it_app/movies/presentation/screens/popular_movies_screen.dart';
+import 'package:watch_it_app/movies/presentation/screens/top_rated_screen.dart';
 
 import 'core/services/services_locator.dart';
 
@@ -15,10 +17,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.dark(useMaterial3: true),
       debugShowCheckedModeBanner: false,
       initialRoute: MainMoviesScreen.routeName,
       routes: {
-        MainMoviesScreen.routeName: (context) => const MainMoviesScreen()
+        PopularMoviesScreen.routeName: (context) => const PopularMoviesScreen(),
+        TopRatedScreen.routeName: (context) => const TopRatedScreen(),
+        MainMoviesScreen.routeName: (context) => const MainMoviesScreen(),
       },
     );
   }
