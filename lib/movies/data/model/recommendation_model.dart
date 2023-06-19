@@ -1,8 +1,11 @@
 import 'package:watch_it_app/movies/domain/entities/recommendation.dart';
 
 class RecommendationModel extends Recommendation {
-  const RecommendationModel({required super.backDropPath, required super.id});
+  const RecommendationModel({super.backdropPath, required super.id});
 
   factory RecommendationModel.fromJson(Map<String, dynamic> json) =>
-      RecommendationModel(backDropPath: json['backdrop_path'], id: json['id']);
+      RecommendationModel(
+          backdropPath:
+              json['backdrop_path'] ?? '/nmGWzTLMXy9x7mKd8NKPLmHtWGa.jpg',
+          id: json['id']);
 }

@@ -8,6 +8,7 @@ import '../../../core/network/api_constants.dart';
 import '../../../core/utils/request_states.dart';
 import '../cotroller/movies_bloc.dart';
 import '../cotroller/movies_states.dart';
+import '../screens/movie_detail_screen.dart';
 
 class TopRatedComponent extends StatelessWidget {
   const TopRatedComponent({Key? key}) : super(key: key);
@@ -43,6 +44,12 @@ class TopRatedComponent extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 8.0),
                       child: InkWell(
                         onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      MovieDetailScreen(id: movie.id)));
+
                           /// TODO : NAVIGATE TO  MOVIE DETAILS
                         },
                         child: ClipRRect(

@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_it_app/core/utils/request_states.dart';
 import 'package:watch_it_app/movies/presentation/cotroller/movies_bloc.dart';
 import 'package:watch_it_app/movies/presentation/cotroller/movies_states.dart';
+import 'package:watch_it_app/movies/presentation/screens/movie_detail_screen.dart';
 
 import '../../../core/network/api_constants.dart';
 
@@ -20,7 +21,7 @@ class NowPlayingComponent extends StatelessWidget {
         switch (state.nowPlayingState) {
           case RequestState.loading:
             return const SizedBox(
-              height: 350,
+              height: 400,
               child: Center(
                 child: CircularProgressIndicator(
                   color: Colors.white,
@@ -32,7 +33,7 @@ class NowPlayingComponent extends StatelessWidget {
               duration: const Duration(milliseconds: 500),
               child: CarouselSlider(
                 options: CarouselOptions(
-                  height: 350.0,
+                  height: 400.0,
                   viewportFraction: 1.0,
                   onPageChanged: (index, reason) {},
                 ),
@@ -41,6 +42,12 @@ class NowPlayingComponent extends StatelessWidget {
                     return GestureDetector(
                       key: const Key('openMovieMinimalDetail'),
                       onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    MovieDetailScreen(id: item.id)));
+
                         /// TODO : NAVIGATE TO MOVIE DETAILS
                       },
                       child: Stack(

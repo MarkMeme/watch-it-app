@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
 class Recommendation extends Equatable {
-  final String backDropPath;
+  final String? backdropPath;
 
   final int id;
 
-  const Recommendation({required this.backDropPath, required this.id});
+  const Recommendation({this.backdropPath, required this.id});
 
   @override
-  List<Object?> get props => [backDropPath, id];
+  List<Object?> get props => [backdropPath, id];
 }
