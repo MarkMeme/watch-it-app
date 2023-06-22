@@ -1,6 +1,6 @@
 # watch_it_app
 
-Flutter application to watch movies.
+Flutter application to choose the best movie to watch.
 
 ## Getting Started
 
